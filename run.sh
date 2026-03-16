@@ -1,8 +1,4 @@
 #!/bin/bash
-if [ ! -z "$DEBUG" ]; then set -x; fi
-mkdir /data 2>/dev/null >/dev/null
-RANDOM=$(printf "%d" "0x$(head -c4 /dev/urandom | od -t x1 -An | tr -d ' ')")
-
 if [ -z "$WORKERS" ]; then
   WORKERS=2
 fi
