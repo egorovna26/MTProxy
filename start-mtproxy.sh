@@ -47,7 +47,7 @@ sudo docker run -d \
   --restart unless-stopped \
   -p ${PORT}:443 \
   -e SECRET="${SECRET}" \
-  telegrammessenger/proxy > /dev/null 2>&1
+  ghcr.io/egorovna26/mtproxy:latest > /dev/null 2>&1
 
 # Проверяем результат
 sleep 3
