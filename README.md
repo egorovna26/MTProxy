@@ -4,7 +4,7 @@ Simple MT-Proto proxy
 ## Docker
 ```bash
 docker run -d \
-  -p 8443:443 \
+  -p 443:443 \
   --name=mtproto-proxy \
   --restart=always \
   ghcr.io/egorovna26/mtproxy:latest
