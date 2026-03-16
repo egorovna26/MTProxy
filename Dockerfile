@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 WORKDIR /opt/mtproxy
 
-EXPOSE 2398 443
+EXPOSE 443
 
 COPY run.sh /opt/mtproxy
 
