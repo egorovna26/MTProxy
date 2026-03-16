@@ -1,7 +1,8 @@
 # MTProxy
-Simple MT-Proto proxy
+The Telegram Messenger MTProto proxy is a zero-configuration container that automatically sets up a proxy server that speaks Telegram's native MTProto.
 
-## Docker
+## Quick reference
+To start the proxy all you need to do is
 ```bash
 docker run -d \
   -p 443:443 \
@@ -9,6 +10,22 @@ docker run -d \
   --restart=always \
   ghcr.io/egorovna26/mtproxy:latest
 ```
+
+The container's log output (```docker logs mtproto-proxy```) will contain the links to paste into the Telegram app:
+```
+[+] Using the explicitly passed secret: '00baadf00d15abad1deaa515baadcafe'.
+[+] Saving it to /data/secret.
+[*] Final configuration:
+[*]   Secret 1: 00baadf00d15abad1deaa515baadcafe
+[*]   tg:// link for secret 1 auto configuration: : tg://proxy?server=3.14.15.92&port=443&secret=00baadf00d15abad1deaa515baadcafe
+[*]   t.me link for secret 1: tg://proxy?server=3.14.15.92&port=443&secret=00baadf00d15abad1deaa515baadcafe
+[*]   Tag: no tag
+[*]   External IP: 3.14.15.92
+[*]   Make sure to fix the links in case you run the proxy on a different port.
+```
+The secret will persist across container upgrades in a volume. It is a mandatory configuration parameter: if not provided, it will be generated automatically at container start. You may forward any other port to the container's 443: be sure to fix the automatic configuration links if you do so.
+
+Please note that the proxy gets the Telegram core IP addresses at the start of the container. We try to keep the changes to a minimum, but you should restart the container about once a day, just in case.
 
 ## Building
 Install dependencies, you would need common set of tools for building from source, and development packages for `openssl` and `zlib`.
